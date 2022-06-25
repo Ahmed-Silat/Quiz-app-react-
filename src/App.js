@@ -7,6 +7,8 @@ function App() {
   const [index, setIndex] = useState(0);
   const [quizEnded, setQuizEnded] = useState(false);
   const [startQuiz, setStartQuiz] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState();
+  const [correctAnswer, setCorrectAnswer] = useState(0);
 
   const onClickStartQuiz = () => {
     setStartQuiz(true);
@@ -18,8 +20,20 @@ function App() {
       setIndex(0);
     } else {
       setIndex(index + 1);
+      checkAnswer(index);
     }
   };
+
+  const checkAnswer = (index) => {
+    if (list[index].answer === selectedAnswer) {
+      setCorrectAnswer(correctAnswer + 1);
+      console.log("here");
+    }
+    // else {
+    //   setCorrectAnswer(0);
+    // }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -27,7 +41,7 @@ function App() {
         {quizEnded ? (
           <div>
             <h3>Quiz Score</h3>
-            <h4>You got 50%</h4>
+            <h4>You have selected {correctAnswer} correctly</h4>
             <button onClick={() => setQuizEnded(false)}>Restart Quiz</button>
           </div>
         ) : (
@@ -40,20 +54,23 @@ function App() {
                   {") "}
                   {list[index].question}
                 </h3>
-                {list[index].options.map((item) => {
+                {list[index].options.map((item, index) => {
                   return (
-                    <div key={item}>
+                    <div key={item + "-" + Date.now()}>
                       <input
-                        key={item}
+                        key={`${item}-${Date.now()}`}
                         type="radio"
+                        onChange={(e) => {
+                          setSelectedAnswer(e.target.value);
+                        }}
                         value={item}
-                        name="ocean"
+                        name="mcq"
                       />
                       {item}
                     </div>
                   );
                 })}
-                <button onClick={nextQuestion}>Next</button>
+                <button onClick={() => nextQuestion()}>Next</button>
               </div>
             ) : (
               <button onClick={onClickStartQuiz}>Start Quiz</button>
