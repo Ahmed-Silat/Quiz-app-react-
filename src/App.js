@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import { useState } from "react";
-import list from "./data";
+// import list from "./questions";
 import "./App.css";
 
 function App() {
@@ -27,12 +27,34 @@ function App() {
   const checkAnswer = (index) => {
     if (list[index].answer === selectedAnswer) {
       setCorrectAnswer(correctAnswer + 1);
-      console.log("here");
+      // console.log("here");
     }
     // else {
     //   setCorrectAnswer(0);
     // }
   };
+
+  const restartQuiz = () => {
+    setQuizEnded(false);
+    setCorrectAnswer(0);
+  };
+
+  const grade = (item) => {
+    if (item >= 90 && item <= 100) {
+      return "A";
+    } else if (item >= 80 && item < 90) {
+      return "B";
+    } else if (item >= 70 && item < 80) {
+      return "C";
+    } else if (item >= 60 && item < 70) {
+      return "D";
+    } else if (item >= 50 && item < 60) {
+      return "E";
+    } else if (item >= 0 && item < 50) {
+      return "F";
+    }
+  };
+  // console.log({ list });
 
   return (
     <div className="App">
@@ -42,7 +64,11 @@ function App() {
           <div>
             <h3>Quiz Score</h3>
             <h4>You have selected {correctAnswer} correctly</h4>
-            <button onClick={() => setQuizEnded(false)}>Restart Quiz</button>
+            <h4>Your score is {(correctAnswer / list.length) * 100}%</h4>
+            <h4>
+              Your Grade is: {grade((correctAnswer / list.length) * 100)}{" "}
+            </h4>
+            <button onClick={restartQuiz}>Restart Quiz</button>
           </div>
         ) : (
           <div>
@@ -56,17 +82,19 @@ function App() {
                 </h3>
                 {list[index].options.map((item, index) => {
                   return (
-                    <div key={item + "-" + Date.now()}>
-                      <input
-                        key={`${item}-${Date.now()}`}
-                        type="radio"
-                        onChange={(e) => {
-                          setSelectedAnswer(e.target.value);
-                        }}
-                        value={item}
-                        name="mcq"
-                      />
-                      {item}
+                    <div key={item.id}>
+                      <label>
+                        <input
+                          // key={item.id}
+                          type="radio"
+                          onChange={(e) => {
+                            setSelectedAnswer(e.target.value);
+                          }}
+                          value={item.text}
+                          name="mcq"
+                        />
+                        {item.text}
+                      </label>
                     </div>
                   );
                 })}
