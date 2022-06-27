@@ -86,7 +86,7 @@ function App() {
                   {list[index].question}
                 </h3> */}
                 {<QuestionRendering value={index} />}
-                {list[index].options.map((item) => {
+                {/* {list[index].options.map((item) => {
                   return (
                     <div key={item.id}>
                       <label>
@@ -100,10 +100,10 @@ function App() {
                           name="mcq"
                         />
                         {item.text}
-                      </label>
-                    </div>
+                      </label> */}
+                    {/* </div>
                   );
-                })}
+                })} */}
                 {/* <button onClick={() => nextQuestion()}>Next</button> */}
                 <CustomBtn functionName={nextQuestion} title={"Next"} />
               </div>

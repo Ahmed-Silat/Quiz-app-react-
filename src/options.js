@@ -1,4 +1,5 @@
 import list from "./questions";
+import QuestionRendering from "./questionRender";
 function Options() {
   return (
     <input
