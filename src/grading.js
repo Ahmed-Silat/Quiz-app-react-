@@ -26,4 +26,5 @@ function GradeView(props) {
     </div>
   );
 }
+
 export default GradeView;

@@ -1,5 +1,4 @@
 const generateUniqueId = () => Math.floor(100000 + Math.random() * 900000);
-
 const list = [
   {
     question: "An HTML document can contain _____",

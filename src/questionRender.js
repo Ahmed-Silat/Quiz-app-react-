@@ -1,5 +1,5 @@
 import list from "./questions";
-import Options from "./options";
+// import Options from "./options";
 function QuestionRendering(props) {
   return (
     <div>
@@ -9,24 +9,6 @@ function QuestionRendering(props) {
         {") "}
         {list[props.value].question}
       </h3>
-      {list[props.value].options.map((item) => {
-        return (
-          <div key={item.id}>
-            <label>
-              {/* <input
-                // key={item.id}
-                type="radio"
-                onChange={(e) => {
-                  setSelectedAnswer(e.target.value);
-                }}
-                value={item.text}
-                name="mcq"
-              /> */}
-              {item.text}
-            </label>
-          </div>
-        );
-      })}
     </div>
   );
 }
