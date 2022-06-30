@@ -82,7 +82,6 @@ function App() {
                       }}
                       text={item.text}
                     />
-                    // {item.text}
                   );
                 })}
 
