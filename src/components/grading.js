@@ -1,4 +1,4 @@
-import list from "./questions.js";
+// import list from "./questions.js";
 // import CustomBtn from "./customBtn.js";
 function GradeView(props) {
   const grade = (item) => {
@@ -20,8 +20,10 @@ function GradeView(props) {
     <div>
       <h3>Quiz Score</h3>
       <h4>You have selected {props.correct} correctly</h4>
-      <h4>Your score is {(props.correct / list.length) * 100}%</h4>
-      <h4>Your Grade is: {grade((props.correct / list.length) * 100)} </h4>
+      <h4>Your score is {(props.correct / props.arrayLength) * 100}%</h4>
+      <h4>
+        Your Grade is: {grade((props.correct / props.arrayLength) * 100)}{" "}
+      </h4>
       {/* <CustomBtn /> */}
     </div>
   );
